@@ -1,0 +1,36 @@
+@"
+# Node / Monorepo
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+
+# Env
+.env
+.env.*
+*.env.local
+
+# Builds
+dist/
+build/
+.out/
+.next/
+.coverage/
+coverage/
+
+# Expo / React Native
+.expo/
+.expo-shared/
+android/app/build/
+android/build/
+ios/build/
+ios/Pods/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+"@ | Set-Content -Encoding utf8 .gitignore

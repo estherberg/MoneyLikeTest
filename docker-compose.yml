@@ -1,0 +1,31 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: moneylike
+      POSTGRES_PASSWORD: moneylike
+      POSTGRES_DB: moneylike
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+  api:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql://moneylike:moneylike@db:5432/moneylike?schema=public
+      REDIS_URL: redis://redis:6379
+      PORT: 3001
+      JWT_SECRET: dev_secret_change_me
+      NODE_ENV: development
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "3001:3001"
+volumes:
+  pgdata:
